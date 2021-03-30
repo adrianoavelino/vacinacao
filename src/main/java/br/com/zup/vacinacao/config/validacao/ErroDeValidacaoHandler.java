@@ -41,15 +41,16 @@ public class ErroDeValidacaoHandler {
     @ExceptionHandler({DataIntegrityViolationException.class})
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public ErroDto handleDataIntegrityViolationException(DataIntegrityViolationException ex, WebRequest webRequest) {
-        String mensagem = ex.getMessage();
+        String mensagem = "já está sendo utilizado";
         String campo = webRequest.getDescription(false);
         if (ex.getMessage().contains("uc_email")) {
-            mensagem = "já está sendo utilizado";
             campo = "email";
         }
         if (ex.getMessage().contains("uc_cpf")) {
-        	mensagem = "já está sendo utilizado";
             campo = "cpf";
+        }
+        if (ex.getMessage().contains("uc_nome")) {
+        	campo = "nome";
         }
         return new ErroDto(campo,mensagem);
     }
