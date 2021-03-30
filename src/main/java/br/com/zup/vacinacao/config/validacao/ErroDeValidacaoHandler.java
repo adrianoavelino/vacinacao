@@ -59,10 +59,10 @@ public class ErroDeValidacaoHandler {
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     public ErroDto handleInvalidFormatException(InvalidFormatException ex, WebRequest webRequest) {
     	String mensagem = ex.getMessage();
-    	String campo = webRequest.getDescription(false);
-    	if (ex.getMessage().contains("Failed to deserialize java.time.LocalDate")) {
+    	String campo = "";
+		if (mensagem.contains("Failed to deserialize java.time.LocalDate")) {
+			campo = (mensagem.contains("AplicacaoVacinaDto[\"data\"]"))?"data": "dataNascimento";
     		mensagem = "Data inválida. Ex: 2021-01-01 ";
-    		campo = "dataNascimento";
     	}
     	return new ErroDto(campo,mensagem);
     }

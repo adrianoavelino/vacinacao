@@ -23,6 +23,9 @@ public class Vacina implements Serializable {
 	@NotBlank(message = "não pode estar em branco")
 	private String nome;
 
+	public Vacina() {
+	}
+
 	public Vacina(String nome) {
 		this.nome = nome;
 	}
