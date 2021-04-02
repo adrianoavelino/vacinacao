@@ -18,7 +18,7 @@ public class VacinaService {
 	}
 
 	public Vacina findByNome(String nomeVacina) {
-		return repository.findByNomeIgnoreCase(nomeVacina)
+		return repository.findByNome(nomeVacina)
 				.orElseThrow(() -> new EntityNotFound("Não foi possível encontrar uma vacina com esse nome"));
 	}
 	

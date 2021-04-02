@@ -10,6 +10,6 @@ import br.com.zup.vacinacao.entity.Vacina;
 @Repository
 public interface VacinaRepository extends JpaRepository<Vacina, Long> {
 
-	Optional<Vacina> findByNomeIgnoreCase(String nomeVacina);
+	Optional<Vacina> findByNome(String nomeVacina);
 
 }
