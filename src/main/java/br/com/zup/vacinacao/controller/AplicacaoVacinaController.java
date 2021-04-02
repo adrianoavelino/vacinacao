@@ -19,7 +19,7 @@ import br.com.zup.vacinacao.service.UsuarioService;
 import br.com.zup.vacinacao.service.VacinaService;
 
 @RestController
-@RequestMapping("/aplicacaovacinas")
+@RequestMapping("/v1/aplicacaovacinas")
 public class AplicacaoVacinaController {
 
 	@Autowired
@@ -36,7 +36,7 @@ public class AplicacaoVacinaController {
 		AplicacaoVacina aplicacaoVacina = AplicacaoVacinaDto.converter(dto, serviceVacina, serviceUsuario);
 		service.save(aplicacaoVacina);
 
-		URI uri = uriBuilder.path("/aplicacaovacinas/{id}").buildAndExpand(aplicacaoVacina.getId()).toUri();
+		URI uri = uriBuilder.path("/v1/aplicacaovacinas/{id}").buildAndExpand(aplicacaoVacina.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
 }

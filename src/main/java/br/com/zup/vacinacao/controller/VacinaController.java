@@ -17,7 +17,7 @@ import br.com.zup.vacinacao.entity.Vacina;
 import br.com.zup.vacinacao.service.VacinaService;
 
 @RestController
-@RequestMapping("/vacinas")
+@RequestMapping("/v1/vacinas")
 public class VacinaController {
 
 	@Autowired
@@ -28,7 +28,7 @@ public class VacinaController {
 		Vacina vacina = VacinaDto.converter(dto);
 		service.save(vacina);
 
-		URI uri = uriBuilder.path("/vacinas/{id}").buildAndExpand(vacina.getId()).toUri();
+		URI uri = uriBuilder.path("/v1/vacinas/{id}").buildAndExpand(vacina.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
 	}
 }
