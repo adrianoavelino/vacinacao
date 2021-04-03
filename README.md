@@ -15,3 +15,5 @@ cd vacinacao
 #inicia aplicação
 ./mvnw spring-boot:run
 ```
+## Documentação da API
+Com a aplicação iniciada acesse [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) para visualizar a documentação da API.
