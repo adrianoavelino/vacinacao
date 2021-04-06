@@ -17,6 +17,8 @@ import org.springframework.web.context.request.WebRequest;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 
+import br.com.zup.vacinacao.exception.EntityNotFound;
+
 @RestControllerAdvice
 public class ErroDeValidacaoHandler {
 	
@@ -64,6 +66,14 @@ public class ErroDeValidacaoHandler {
 			campo = (mensagem.contains("AplicacaoVacinaDto[\"data\"]"))?"data": "dataNascimento";
     		mensagem = "Data inválida. Ex: 2021-01-01 ";
     	}
+    	return new ErroDto(campo,mensagem);
+    }
+    
+    @ExceptionHandler({EntityNotFound.class})
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
+    public ErroDto handleInvalidFormatException(EntityNotFound ex, WebRequest webRequest) {
+    	String mensagem = ex.getMessage();
+    	String campo = (mensagem.contains("vacina"))?"nomeVacina": "email";
     	return new ErroDto(campo,mensagem);
     }
     
