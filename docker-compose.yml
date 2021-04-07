@@ -1,6 +1,15 @@
 version: "3.5"
 
 services:
+  app:
+    container_name: app
+    build: .
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+    env_file:
+      - .env
+    depends_on:
+      - db
   db:
     container_name: db
     image: postgres:9.5
@@ -8,6 +17,6 @@ services:
       - "5432:5432"
 
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: ${SPRING_DATASOURCE_USERNAME}
+      POSTGRES_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
       POSTGRES_DB: vacinacao
