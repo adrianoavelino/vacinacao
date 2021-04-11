@@ -35,6 +35,9 @@ public class AplicacaoVacina implements Serializable {
 	@NotNull
 	private LocalDate data;
 	
+	public AplicacaoVacina() {
+	}
+
 	public AplicacaoVacina(Vacina vacina, Usuario usuario, LocalDate data) {
 		this.data = data;
 		this.vacina = vacina;
