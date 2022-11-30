@@ -26,7 +26,7 @@ public class VacinaController {
 	@PostMapping
 	public ResponseEntity<VacinaDto> cadastrar(@RequestBody @Valid VacinaDto dto, UriComponentsBuilder uriBuilder) {
 		Vacina vacina = VacinaDto.converter(dto);
-		service.save(vacina);
+		vacina = service.save(vacina);
 
 		URI uri = uriBuilder.path("/v1/vacinas/{id}").buildAndExpand(vacina.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
