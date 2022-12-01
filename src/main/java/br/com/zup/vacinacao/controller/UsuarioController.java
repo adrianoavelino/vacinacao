@@ -26,7 +26,7 @@ public class UsuarioController {
 	@PostMapping
 	public ResponseEntity<UsuarioDto> cadastrar(@RequestBody @Valid UsuarioDto dto, UriComponentsBuilder uriBuilder) {
 		Usuario usuario = UsuarioDto.converter(dto);
-		service.save(usuario);
+		usuario = service.save(usuario);
 
 		URI uri = uriBuilder.path("/v1/usuarios/{id}").buildAndExpand(usuario.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
